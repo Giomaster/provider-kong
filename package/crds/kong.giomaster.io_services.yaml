@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: services.kong-gateway.giomaster.io
+  name: services.kong.giomaster.io
 spec:
-  group: kong-gateway.giomaster.io
+  group: kong.giomaster.io
   names:
     categories:
     - crossplane
@@ -83,13 +83,7 @@ spec:
                     description: (Attributes) Certificate to be used as client certificate
                       while TLS handshaking to the upstream server. (see below for
                       nested schema)
-                    items:
-                      properties:
-                        id:
-                          description: (String) The ID of this resource.
-                          type: string
-                      type: object
-                    type: array
+                    type: string
                   connectTimeout:
                     description: |-
                       (Number) The timeout in milliseconds for establishing a connection to the upstream server.
@@ -109,6 +103,11 @@ spec:
                     description: |-
                       (String) The host of the upstream server. Note that the host value is case sensitive.
                       The host of the upstream server. Note that the host value is case sensitive.
+                    type: string
+                  name:
+                    description: |-
+                      (String) The Service name.
+                      The Service name.
                     type: string
                   path:
                     description: |-
@@ -192,13 +191,7 @@ spec:
                     description: (Attributes) Certificate to be used as client certificate
                       while TLS handshaking to the upstream server. (see below for
                       nested schema)
-                    items:
-                      properties:
-                        id:
-                          description: (String) The ID of this resource.
-                          type: string
-                      type: object
-                    type: array
+                    type: string
                   connectTimeout:
                     description: |-
                       (Number) The timeout in milliseconds for establishing a connection to the upstream server.
@@ -218,6 +211,11 @@ spec:
                     description: |-
                       (String) The host of the upstream server. Note that the host value is case sensitive.
                       The host of the upstream server. Note that the host value is case sensitive.
+                    type: string
+                  name:
+                    description: |-
+                      (String) The Service name.
+                      The Service name.
                     type: string
                   path:
                     description: |-
@@ -465,13 +463,7 @@ spec:
                     description: (Attributes) Certificate to be used as client certificate
                       while TLS handshaking to the upstream server. (see below for
                       nested schema)
-                    items:
-                      properties:
-                        id:
-                          description: (String) The ID of this resource.
-                          type: string
-                      type: object
-                    type: array
+                    type: string
                   connectTimeout:
                     description: |-
                       (Number) The timeout in milliseconds for establishing a connection to the upstream server.
@@ -494,6 +486,11 @@ spec:
                     type: string
                   id:
                     description: (String) The ID of this resource.
+                    type: string
+                  name:
+                    description: |-
+                      (String) The Service name.
+                      The Service name.
                     type: string
                   path:
                     description: |-

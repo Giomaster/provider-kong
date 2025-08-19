@@ -13,33 +13,14 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type ClientCertificateInitParameters struct {
-
-	// (String) The ID of this resource.
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-}
-
-type ClientCertificateObservation struct {
-
-	// (String) The ID of this resource.
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-}
-
-type ClientCertificateParameters struct {
-
-	// (String) The ID of this resource.
-	// +kubebuilder:validation:Optional
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-}
-
-type ServiceInitParameters_2 struct {
+type ServiceInitParameters struct {
 
 	// (List of String) Array of CA Certificate object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to null when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).
 	// Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).
 	CACertificates []*string `json:"caCertificates,omitempty" tf:"ca_certificates,omitempty"`
 
 	// (Attributes) Certificate to be used as client certificate while TLS handshaking to the upstream server. (see below for nested schema)
-	ClientCertificate []ClientCertificateInitParameters `json:"clientCertificate,omitempty" tf:"client_certificate,omitempty"`
+	ClientCertificate *string `json:"clientCertificate,omitempty" tf:"client_certificate,omitempty"`
 
 	// (Number) The timeout in milliseconds for establishing a connection to the upstream server.
 	// The timeout in milliseconds for establishing a connection to the upstream server.
@@ -56,6 +37,10 @@ type ServiceInitParameters_2 struct {
 	// (String) The host of the upstream server. Note that the host value is case sensitive.
 	// The host of the upstream server. Note that the host value is case sensitive.
 	Host *string `json:"host,omitempty" tf:"host,omitempty"`
+
+	// (String) The Service name.
+	// The Service name.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) The path to be used in requests to the upstream server.
 	// The path to be used in requests to the upstream server.
@@ -102,14 +87,14 @@ type ServiceInitParameters_2 struct {
 	WriteTimeout *float64 `json:"writeTimeout,omitempty" tf:"write_timeout,omitempty"`
 }
 
-type ServiceObservation_2 struct {
+type ServiceObservation struct {
 
 	// (List of String) Array of CA Certificate object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to null when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).
 	// Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).
 	CACertificates []*string `json:"caCertificates,omitempty" tf:"ca_certificates,omitempty"`
 
 	// (Attributes) Certificate to be used as client certificate while TLS handshaking to the upstream server. (see below for nested schema)
-	ClientCertificate []ClientCertificateObservation `json:"clientCertificate,omitempty" tf:"client_certificate,omitempty"`
+	ClientCertificate *string `json:"clientCertificate,omitempty" tf:"client_certificate,omitempty"`
 
 	// (Number) The timeout in milliseconds for establishing a connection to the upstream server.
 	// The timeout in milliseconds for establishing a connection to the upstream server.
@@ -129,6 +114,10 @@ type ServiceObservation_2 struct {
 
 	// (String) The ID of this resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// (String) The Service name.
+	// The Service name.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) The path to be used in requests to the upstream server.
 	// The path to be used in requests to the upstream server.
@@ -175,7 +164,7 @@ type ServiceObservation_2 struct {
 	WriteTimeout *float64 `json:"writeTimeout,omitempty" tf:"write_timeout,omitempty"`
 }
 
-type ServiceParameters_2 struct {
+type ServiceParameters struct {
 
 	// (List of String) Array of CA Certificate object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to null when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).
 	// Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).
@@ -184,7 +173,7 @@ type ServiceParameters_2 struct {
 
 	// (Attributes) Certificate to be used as client certificate while TLS handshaking to the upstream server. (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	ClientCertificate []ClientCertificateParameters `json:"clientCertificate,omitempty" tf:"client_certificate,omitempty"`
+	ClientCertificate *string `json:"clientCertificate,omitempty" tf:"client_certificate,omitempty"`
 
 	// (Number) The timeout in milliseconds for establishing a connection to the upstream server.
 	// The timeout in milliseconds for establishing a connection to the upstream server.
@@ -205,6 +194,11 @@ type ServiceParameters_2 struct {
 	// The host of the upstream server. Note that the host value is case sensitive.
 	// +kubebuilder:validation:Optional
 	Host *string `json:"host,omitempty" tf:"host,omitempty"`
+
+	// (String) The Service name.
+	// The Service name.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) The path to be used in requests to the upstream server.
 	// The path to be used in requests to the upstream server.
@@ -265,7 +259,7 @@ type ServiceParameters_2 struct {
 // ServiceSpec defines the desired state of Service
 type ServiceSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ServiceParameters_2 `json:"forProvider"`
+	ForProvider     ServiceParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -276,13 +270,13 @@ type ServiceSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ServiceInitParameters_2 `json:"initProvider,omitempty"`
+	InitProvider ServiceInitParameters `json:"initProvider,omitempty"`
 }
 
 // ServiceStatus defines the observed state of Service.
 type ServiceStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ServiceObservation_2 `json:"atProvider,omitempty"`
+	AtProvider        ServiceObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

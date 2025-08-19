@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kong-admin-external
+  namespace: kong
+spec:
+  ports:
+    - name: admin
+      port: 8001
+      targetPort: 8001
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: kong-admin-external
+  namespace: kong
+subsets:
+  - addresses:
+      - ip: 172.17.0.1
+    ports:
+      - name: admin
+        port: 8001

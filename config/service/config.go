@@ -7,18 +7,11 @@ import (
 
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("kong-gateway_service", func(r *config.Resource) {
+		r.ShortGroup = "kong"
+		r.ExternalName = config.IdentifierFromProvider
 		r.TerraformResource.Schema["client_certificate"] = &schema.Schema{
-			Type:     schema.TypeList,
+			Type:     schema.TypeString,
 			Optional: true,
-			MaxItems: 1,
-			Elem: &schema.Resource{
-				Schema: map[string]*schema.Schema{
-					"id": {
-						Type:     schema.TypeString,
-						Optional: true,
-					},
-				},
-			},
 		}
 
 		r.LateInitializer = config.LateInitializer{

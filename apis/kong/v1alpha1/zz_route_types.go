@@ -67,6 +67,10 @@ type RouteInitParameters struct {
 	// A list of HTTP methods that match this Route.
 	Methods []*string `json:"methods,omitempty" tf:"methods,omitempty"`
 
+	// (String) The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+	// The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// (String) Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior. must be one of ["v0", "v1"]
 	// Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior. must be one of ["v0", "v1"]
 	PathHandling *string `json:"pathHandling,omitempty" tf:"path_handling,omitempty"`
@@ -96,7 +100,7 @@ type RouteInitParameters struct {
 	ResponseBuffering *bool `json:"responseBuffering,omitempty" tf:"response_buffering,omitempty"`
 
 	// (Attributes) The Service this Route is associated to. This is where the Route proxies traffic to. (see below for nested schema)
-	Service []ServiceInitParameters `json:"service,omitempty" tf:"service,omitempty"`
+	Service *string `json:"service,omitempty" tf:"service,omitempty"`
 
 	// (List of String) A list of SNIs that match this Route when using stream routing.
 	// A list of SNIs that match this Route when using stream routing.
@@ -146,6 +150,10 @@ type RouteObservation struct {
 	// A list of HTTP methods that match this Route.
 	Methods []*string `json:"methods,omitempty" tf:"methods,omitempty"`
 
+	// (String) The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+	// The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// (String) Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior. must be one of ["v0", "v1"]
 	// Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior. must be one of ["v0", "v1"]
 	PathHandling *string `json:"pathHandling,omitempty" tf:"path_handling,omitempty"`
@@ -175,7 +183,7 @@ type RouteObservation struct {
 	ResponseBuffering *bool `json:"responseBuffering,omitempty" tf:"response_buffering,omitempty"`
 
 	// (Attributes) The Service this Route is associated to. This is where the Route proxies traffic to. (see below for nested schema)
-	Service []ServiceObservation `json:"service,omitempty" tf:"service,omitempty"`
+	Service *string `json:"service,omitempty" tf:"service,omitempty"`
 
 	// (List of String) A list of SNIs that match this Route when using stream routing.
 	// A list of SNIs that match this Route when using stream routing.
@@ -228,6 +236,11 @@ type RouteParameters struct {
 	// +kubebuilder:validation:Optional
 	Methods []*string `json:"methods,omitempty" tf:"methods,omitempty"`
 
+	// (String) The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+	// The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// (String) Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior. must be one of ["v0", "v1"]
 	// Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior. must be one of ["v0", "v1"]
 	// +kubebuilder:validation:Optional
@@ -265,7 +278,7 @@ type RouteParameters struct {
 
 	// (Attributes) The Service this Route is associated to. This is where the Route proxies traffic to. (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	Service []ServiceParameters `json:"service,omitempty" tf:"service,omitempty"`
+	Service *string `json:"service,omitempty" tf:"service,omitempty"`
 
 	// (List of String) A list of SNIs that match this Route when using stream routing.
 	// A list of SNIs that match this Route when using stream routing.
@@ -290,25 +303,6 @@ type RouteParameters struct {
 	// Unix epoch when the resource was last updated.
 	// +kubebuilder:validation:Optional
 	UpdatedAt *float64 `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
-}
-
-type ServiceInitParameters struct {
-
-	// (String) The ID of this resource.
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-}
-
-type ServiceObservation struct {
-
-	// (String) The ID of this resource.
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-}
-
-type ServiceParameters struct {
-
-	// (String) The ID of this resource.
-	// +kubebuilder:validation:Optional
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type SourcesInitParameters struct {

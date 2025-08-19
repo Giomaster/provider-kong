@@ -9,8 +9,8 @@ import (
 
 	"github.com/crossplane/upjet/pkg/controller"
 
-	route "github.com/Giomaster/provider-kong/internal/controller/kong-gateway/route"
-	service "github.com/Giomaster/provider-kong/internal/controller/kong-gateway/service"
+	route "github.com/Giomaster/provider-kong/internal/controller/kong/route"
+	service "github.com/Giomaster/provider-kong/internal/controller/kong/service"
 	providerconfig "github.com/Giomaster/provider-kong/internal/controller/providerconfig"
 )
 

@@ -10,7 +10,7 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/Giomaster/provider-kong/apis/kong-gateway/v1alpha1"
+	v1alpha1 "github.com/Giomaster/provider-kong/apis/kong/v1alpha1"
 	v1alpha1apis "github.com/Giomaster/provider-kong/apis/v1alpha1"
 	v1beta1 "github.com/Giomaster/provider-kong/apis/v1beta1"
 )

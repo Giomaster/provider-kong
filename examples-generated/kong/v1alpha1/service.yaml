@@ -1,0 +1,16 @@
+apiVersion: kong.giomaster.io/v1alpha1
+kind: Service
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kong/v1alpha1/service
+  labels:
+    testing.upbound.io/example-name: my_service
+  name: my-service
+spec:
+  forProvider:
+    name: my-upjet-service
+    host: example.com
+    port: 80
+    protocol: http
+  providerConfigRef:
+    name: default

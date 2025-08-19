@@ -1,0 +1,21 @@
+apiVersion: kong.giomaster.io/v1alpha1
+kind: Route
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kong/v1alpha1/route
+  labels:
+    testing.upbound.io/example-name: my_route
+  name: my-route
+spec:
+  forProvider:
+    name: 'my-upjet-route'
+    paths:
+    - '/my-upjet-path'
+    protocols:
+    - tls
+    service: '{"id": "3595fb74-becf-4ac6-865a-1c2d4ce6ee98"}'
+    sources:
+    - ip: '192.172.0.1'
+      port: 8000
+  providerConfigRef:
+    name: default

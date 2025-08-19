@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: routes.kong-gateway.giomaster.io
+  name: routes.kong.giomaster.io
 spec:
-  group: kong-gateway.giomaster.io
+  group: kong.giomaster.io
   names:
     categories:
     - crossplane
@@ -121,6 +121,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  name:
+                    description: |-
+                      (String) The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+                      The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+                    type: string
                   pathHandling:
                     description: |-
                       (String) Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior. must be one of ["v0", "v1"]
@@ -164,13 +169,7 @@ spec:
                     description: (Attributes) The Service this Route is associated
                       to. This is where the Route proxies traffic to. (see below for
                       nested schema)
-                    items:
-                      properties:
-                        id:
-                          description: (String) The ID of this resource.
-                          type: string
-                      type: object
-                    type: array
+                    type: string
                   snis:
                     description: |-
                       (List of String) A list of SNIs that match this Route when using stream routing.
@@ -274,6 +273,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  name:
+                    description: |-
+                      (String) The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+                      The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+                    type: string
                   pathHandling:
                     description: |-
                       (String) Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior. must be one of ["v0", "v1"]
@@ -317,13 +321,7 @@ spec:
                     description: (Attributes) The Service this Route is associated
                       to. This is where the Route proxies traffic to. (see below for
                       nested schema)
-                    items:
-                      properties:
-                        id:
-                          description: (String) The ID of this resource.
-                          type: string
-                      type: object
-                    type: array
+                    type: string
                   snis:
                     description: |-
                       (List of String) A list of SNIs that match this Route when using stream routing.
@@ -589,6 +587,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  name:
+                    description: |-
+                      (String) The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+                      The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+                    type: string
                   pathHandling:
                     description: |-
                       (String) Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior. must be one of ["v0", "v1"]
@@ -632,13 +635,7 @@ spec:
                     description: (Attributes) The Service this Route is associated
                       to. This is where the Route proxies traffic to. (see below for
                       nested schema)
-                    items:
-                      properties:
-                        id:
-                          description: (String) The ID of this resource.
-                          type: string
-                      type: object
-                    type: array
+                    type: string
                   snis:
                     description: |-
                       (List of String) A list of SNIs that match this Route when using stream routing.

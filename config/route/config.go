@@ -7,6 +7,8 @@ import (
 
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("kong-gateway_route", func(r *config.Resource) {
+		r.ShortGroup = "kong"
+		r.ExternalName = config.IdentifierFromProvider
 		r.TerraformResource.Schema["destinations"] = &schema.Schema{
 			Type:     schema.TypeList,
 			Optional: true,
@@ -25,17 +27,8 @@ func Configure(p *config.Provider) {
 		}
 
 		r.TerraformResource.Schema["service"] = &schema.Schema{
-			Type:     schema.TypeList,
+			Type:     schema.TypeString,
 			Optional: true,
-			MaxItems: 1,
-			Elem: &schema.Resource{
-				Schema: map[string]*schema.Schema{
-					"id": {
-						Type:     schema.TypeString,
-						Optional: true,
-					},
-				},
-			},
 		}
 
 		r.TerraformResource.Schema["sources"] = &schema.Schema{
