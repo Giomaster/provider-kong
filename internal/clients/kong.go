@@ -19,6 +19,9 @@ import (
 )
 
 const (
+	adminToken = "admin_token"
+	serverUrl  = "server_url"
+
 	// error messages
 	errNoProviderConfig     = "no providerConfigRef provided"
 	errGetProviderConfig    = "cannot get referenced ProviderConfig"
@@ -63,10 +66,15 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 
 		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
-			"username": creds["username"],
-			"password": creds["password"],
-		}*/
+		ps.Configuration = map[string]any{}
+		if v, ok := creds[adminToken]; ok {
+			ps.Configuration[adminToken] = v
+		}
+
+		if v, ok := creds[serverUrl]; ok {
+			ps.Configuration[serverUrl] = v
+		}
+
 		return ps, nil
 	}
 }

@@ -10,6 +10,7 @@ import "github.com/crossplane/upjet/pkg/config"
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	"kong-gateway_service": config.NameAsIdentifier,
+	"kong-gateway_route":   config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

@@ -1,0 +1,41 @@
+apiVersion: kong-gateway.giomaster.io/v1alpha1
+kind: Route
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kong-gateway/v1alpha1/route
+  labels:
+    testing.upbound.io/example-name: my_route
+  name: my-route
+spec:
+  forProvider:
+    createdAt: 5
+    destinations:
+    - ip: '...my_ip...'
+      port: 4
+    headers:
+      key: []
+    hosts:
+    - '...'
+    httpsRedirectStatusCode: 308
+    methods:
+    - '...'
+    pathHandling: v0
+    paths:
+    - '...'
+    preserveHost: false
+    protocols:
+    - tls
+    regexPriority: 7
+    requestBuffering: false
+    responseBuffering: true
+    service:
+      id: '...my_id...'
+    snis:
+    - '...'
+    sources:
+    - ip: '...my_ip...'
+      port: 9
+    stripPath: true
+    tags:
+    - '...'
+    updatedAt: 2

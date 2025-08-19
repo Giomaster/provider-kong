@@ -10,6 +10,7 @@ func Configure(p *config.Provider) {
 		r.TerraformResource.Schema["client_certificate"] = &schema.Schema{
 			Type:     schema.TypeList,
 			Optional: true,
+			MaxItems: 1,
 			Elem: &schema.Resource{
 				Schema: map[string]*schema.Schema{
 					"id": {

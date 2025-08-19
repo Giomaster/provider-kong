@@ -1,0 +1,30 @@
+apiVersion: kong-gateway.giomaster.io/v1alpha1
+kind: Service
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kong-gateway/v1alpha1/service
+  labels:
+    testing.upbound.io/example-name: my_service
+  name: my-service
+spec:
+  forProvider:
+    caCertificates:
+    - '...'
+    clientCertificate:
+      - id: '...my_id...'
+    connectTimeout: 8
+    createdAt: 8
+    enabled: false
+    host: '...my_host...'
+    path: '...my_path...'
+    port: 1
+    protocol: grpcs
+    readTimeout: 7
+    retries: 5
+    tags:
+    - '...'
+    tlsVerify: false
+    tlsVerifyDepth: 0
+    updatedAt: 10
+    url: '...my_url...'
+    writeTimeout: 4
