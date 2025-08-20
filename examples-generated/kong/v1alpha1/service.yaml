@@ -3,6 +3,7 @@ kind: Service
 metadata:
   annotations:
     meta.upbound.io/example-id: kong/v1alpha1/service
+    crossplane.io/external-name: my-service
   labels:
     testing.upbound.io/example-name: my_service
   name: my-service

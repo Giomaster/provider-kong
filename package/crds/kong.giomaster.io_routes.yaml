@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: routes.kong.giomaster.io
 spec:
   group: kong.giomaster.io
@@ -166,10 +166,13 @@ spec:
                       Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.
                     type: boolean
                   service:
+                    additionalProperties:
+                      type: string
                     description: (Attributes) The Service this Route is associated
                       to. This is where the Route proxies traffic to. (see below for
                       nested schema)
-                    type: string
+                    type: object
+                    x-kubernetes-map-type: granular
                   snis:
                     description: |-
                       (List of String) A list of SNIs that match this Route when using stream routing.
@@ -318,10 +321,13 @@ spec:
                       Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.
                     type: boolean
                   service:
+                    additionalProperties:
+                      type: string
                     description: (Attributes) The Service this Route is associated
                       to. This is where the Route proxies traffic to. (see below for
                       nested schema)
-                    type: string
+                    type: object
+                    x-kubernetes-map-type: granular
                   snis:
                     description: |-
                       (List of String) A list of SNIs that match this Route when using stream routing.
@@ -632,10 +638,13 @@ spec:
                       Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.
                     type: boolean
                   service:
+                    additionalProperties:
+                      type: string
                     description: (Attributes) The Service this Route is associated
                       to. This is where the Route proxies traffic to. (see below for
                       nested schema)
-                    type: string
+                    type: object
+                    x-kubernetes-map-type: granular
                   snis:
                     description: |-
                       (List of String) A list of SNIs that match this Route when using stream routing.

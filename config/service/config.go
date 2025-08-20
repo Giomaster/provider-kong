@@ -10,8 +10,12 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "kong"
 		r.ExternalName = config.IdentifierFromProvider
 		r.TerraformResource.Schema["client_certificate"] = &schema.Schema{
-			Type:     schema.TypeString,
+			Type:     schema.TypeMap,
 			Optional: true,
+			Elem: &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		}
 
 		r.LateInitializer = config.LateInitializer{

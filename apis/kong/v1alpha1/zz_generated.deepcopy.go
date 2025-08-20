@@ -232,8 +232,19 @@ func (in *RouteInitParameters) DeepCopyInto(out *RouteInitParameters) {
 	}
 	if in.Service != nil {
 		in, out := &in.Service, &out.Service
-		*out = new(string)
-		**out = **in
+		*out = make(map[string]*string, len(*in))
+		for key, val := range *in {
+			var outVal *string
+			if val == nil {
+				(*out)[key] = nil
+			} else {
+				inVal := (*in)[key]
+				in, out := &inVal, &outVal
+				*out = new(string)
+				**out = **in
+			}
+			(*out)[key] = outVal
+		}
 	}
 	if in.Snis != nil {
 		in, out := &in.Snis, &out.Snis
@@ -441,8 +452,19 @@ func (in *RouteObservation) DeepCopyInto(out *RouteObservation) {
 	}
 	if in.Service != nil {
 		in, out := &in.Service, &out.Service
-		*out = new(string)
-		**out = **in
+		*out = make(map[string]*string, len(*in))
+		for key, val := range *in {
+			var outVal *string
+			if val == nil {
+				(*out)[key] = nil
+			} else {
+				inVal := (*in)[key]
+				in, out := &inVal, &outVal
+				*out = new(string)
+				**out = **in
+			}
+			(*out)[key] = outVal
+		}
 	}
 	if in.Snis != nil {
 		in, out := &in.Snis, &out.Snis
@@ -613,8 +635,19 @@ func (in *RouteParameters) DeepCopyInto(out *RouteParameters) {
 	}
 	if in.Service != nil {
 		in, out := &in.Service, &out.Service
-		*out = new(string)
-		**out = **in
+		*out = make(map[string]*string, len(*in))
+		for key, val := range *in {
+			var outVal *string
+			if val == nil {
+				(*out)[key] = nil
+			} else {
+				inVal := (*in)[key]
+				in, out := &inVal, &outVal
+				*out = new(string)
+				**out = **in
+			}
+			(*out)[key] = outVal
+		}
 	}
 	if in.Snis != nil {
 		in, out := &in.Snis, &out.Snis

@@ -27,8 +27,12 @@ func Configure(p *config.Provider) {
 		}
 
 		r.TerraformResource.Schema["service"] = &schema.Schema{
-			Type:     schema.TypeString,
+			Type:     schema.TypeMap,
 			Optional: true,
+			Elem: &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		}
 
 		r.TerraformResource.Schema["sources"] = &schema.Schema{

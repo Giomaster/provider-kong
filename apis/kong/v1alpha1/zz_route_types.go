@@ -100,7 +100,8 @@ type RouteInitParameters struct {
 	ResponseBuffering *bool `json:"responseBuffering,omitempty" tf:"response_buffering,omitempty"`
 
 	// (Attributes) The Service this Route is associated to. This is where the Route proxies traffic to. (see below for nested schema)
-	Service *string `json:"service,omitempty" tf:"service,omitempty"`
+	// +mapType=granular
+	Service map[string]*string `json:"service,omitempty" tf:"service,omitempty"`
 
 	// (List of String) A list of SNIs that match this Route when using stream routing.
 	// A list of SNIs that match this Route when using stream routing.
@@ -183,7 +184,8 @@ type RouteObservation struct {
 	ResponseBuffering *bool `json:"responseBuffering,omitempty" tf:"response_buffering,omitempty"`
 
 	// (Attributes) The Service this Route is associated to. This is where the Route proxies traffic to. (see below for nested schema)
-	Service *string `json:"service,omitempty" tf:"service,omitempty"`
+	// +mapType=granular
+	Service map[string]*string `json:"service,omitempty" tf:"service,omitempty"`
 
 	// (List of String) A list of SNIs that match this Route when using stream routing.
 	// A list of SNIs that match this Route when using stream routing.
@@ -278,7 +280,8 @@ type RouteParameters struct {
 
 	// (Attributes) The Service this Route is associated to. This is where the Route proxies traffic to. (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	Service *string `json:"service,omitempty" tf:"service,omitempty"`
+	// +mapType=granular
+	Service map[string]*string `json:"service,omitempty" tf:"service,omitempty"`
 
 	// (List of String) A list of SNIs that match this Route when using stream routing.
 	// A list of SNIs that match this Route when using stream routing.
