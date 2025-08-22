@@ -27,11 +27,16 @@ func Configure(p *config.Provider) {
 		}
 
 		r.TerraformResource.Schema["service"] = &schema.Schema{
-			Type:     schema.TypeMap,
+			Type:     schema.TypeList,
 			Optional: true,
-			Elem: &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
+			MaxItems: 1,
+			Elem: &schema.Resource{
+				Schema: map[string]*schema.Schema{
+					"id": {
+						Type:     schema.TypeString,
+						Optional: true,
+					},
+				},
 			},
 		}
 
@@ -50,6 +55,13 @@ func Configure(p *config.Provider) {
 					},
 				},
 			},
+		}
+
+		r.AddSingletonListConversion("service[0]", "spec.forProvider.service")
+		r.TerraformConversions = append(r.TerraformConversions, config.NewTFSingletonConversion())
+		r.References["service.id"] = config.Reference{
+			TerraformName: "kong-gateway_service",
+			Extractor:     `github.com/crossplane/upjet/pkg/resource.ExtractResourceID()`,
 		}
 
 		r.LateInitializer = config.LateInitializer{

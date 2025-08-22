@@ -80,10 +80,13 @@ spec:
                       type: string
                     type: array
                   clientCertificate:
+                    additionalProperties:
+                      type: string
                     description: (Attributes) Certificate to be used as client certificate
                       while TLS handshaking to the upstream server. (see below for
                       nested schema)
-                    type: string
+                    type: object
+                    x-kubernetes-map-type: granular
                   connectTimeout:
                     description: |-
                       (Number) The timeout in milliseconds for establishing a connection to the upstream server.
@@ -188,10 +191,13 @@ spec:
                       type: string
                     type: array
                   clientCertificate:
+                    additionalProperties:
+                      type: string
                     description: (Attributes) Certificate to be used as client certificate
                       while TLS handshaking to the upstream server. (see below for
                       nested schema)
-                    type: string
+                    type: object
+                    x-kubernetes-map-type: granular
                   connectTimeout:
                     description: |-
                       (Number) The timeout in milliseconds for establishing a connection to the upstream server.
@@ -460,10 +466,13 @@ spec:
                       type: string
                     type: array
                   clientCertificate:
+                    additionalProperties:
+                      type: string
                     description: (Attributes) Certificate to be used as client certificate
                       while TLS handshaking to the upstream server. (see below for
                       nested schema)
-                    type: string
+                    type: object
+                    x-kubernetes-map-type: granular
                   connectTimeout:
                     description: |-
                       (Number) The timeout in milliseconds for establishing a connection to the upstream server.

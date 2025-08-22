@@ -9,9 +9,5 @@ metadata:
   name: my-service
 spec:
   forProvider:
-    name: my-upjet-service
-    host: example.com
-    port: 80
-    protocol: http
-  providerConfigRef:
-    name: default
+    host: 'mingaur.com'
+    name: 'my-service'

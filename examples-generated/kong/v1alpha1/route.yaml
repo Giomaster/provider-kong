@@ -9,10 +9,12 @@ metadata:
   name: my-route
 spec:
   forProvider:
-    name: 'my-upjet-route'
-    paths:
-    - '/my-upjet-path'
+    name: my-route
+    methods:
+      - GET
+      - POST
+    protocols:
+      - HTTP
     service:
-      id: "<insert-service-id-here>"
-  providerConfigRef:
-    name: default
+      idRef:
+        name: my-service

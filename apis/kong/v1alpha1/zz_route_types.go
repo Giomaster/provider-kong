@@ -100,8 +100,7 @@ type RouteInitParameters struct {
 	ResponseBuffering *bool `json:"responseBuffering,omitempty" tf:"response_buffering,omitempty"`
 
 	// (Attributes) The Service this Route is associated to. This is where the Route proxies traffic to. (see below for nested schema)
-	// +mapType=granular
-	Service map[string]*string `json:"service,omitempty" tf:"service,omitempty"`
+	Service *ServiceInitParameters `json:"service,omitempty" tf:"service,omitempty"`
 
 	// (List of String) A list of SNIs that match this Route when using stream routing.
 	// A list of SNIs that match this Route when using stream routing.
@@ -184,8 +183,7 @@ type RouteObservation struct {
 	ResponseBuffering *bool `json:"responseBuffering,omitempty" tf:"response_buffering,omitempty"`
 
 	// (Attributes) The Service this Route is associated to. This is where the Route proxies traffic to. (see below for nested schema)
-	// +mapType=granular
-	Service map[string]*string `json:"service,omitempty" tf:"service,omitempty"`
+	Service *ServiceObservation `json:"service,omitempty" tf:"service,omitempty"`
 
 	// (List of String) A list of SNIs that match this Route when using stream routing.
 	// A list of SNIs that match this Route when using stream routing.
@@ -280,8 +278,7 @@ type RouteParameters struct {
 
 	// (Attributes) The Service this Route is associated to. This is where the Route proxies traffic to. (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	Service map[string]*string `json:"service,omitempty" tf:"service,omitempty"`
+	Service *ServiceParameters `json:"service,omitempty" tf:"service,omitempty"`
 
 	// (List of String) A list of SNIs that match this Route when using stream routing.
 	// A list of SNIs that match this Route when using stream routing.
@@ -306,6 +303,45 @@ type RouteParameters struct {
 	// Unix epoch when the resource was last updated.
 	// +kubebuilder:validation:Optional
 	UpdatedAt *float64 `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
+}
+
+type ServiceInitParameters struct {
+
+	// (String) The ID of this resource.
+	// +crossplane:generate:reference:type=github.com/Giomaster/provider-kong/apis/kong/v1alpha1.Service
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Service in kong to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Service in kong to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
+}
+
+type ServiceObservation struct {
+
+	// (String) The ID of this resource.
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+}
+
+type ServiceParameters struct {
+
+	// (String) The ID of this resource.
+	// +crossplane:generate:reference:type=github.com/Giomaster/provider-kong/apis/kong/v1alpha1.Service
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/pkg/resource.ExtractResourceID()
+	// +kubebuilder:validation:Optional
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Service in kong to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Service in kong to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 }
 
 type SourcesInitParameters struct {
